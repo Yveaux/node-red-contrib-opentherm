@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-opentherm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenTherm interface for Node-RED",
   "main": "index.js",
   "scripts": {

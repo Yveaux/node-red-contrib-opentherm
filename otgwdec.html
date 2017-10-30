@@ -9,7 +9,7 @@
         outputs:1,
         icon: "openth.png",
         label: function() {
-            return this.name||"otgwdec";
+            return this.name||"OtgwDec";
         }
     });
 </script>
@@ -22,5 +22,8 @@
 </script>
 
 <script type="text/x-red" data-help-name="otgwdec">
-    <p>Way too bored to write anything...</p>
+    <p>A node that decodes OpenTherm Gateway (OTGW) formatted messages. Refer to <a href="http://otgw.tclcode.com/">http://otgw.tclcode.com</a>
+    for a description of the message format.
+    Valid messages will be decoded to <b>msg.msgtype</b>, <b>msg.dataid</b> and <b>msg.datavalue</b>, which can be decoded with e.g. an OpenThermDec node. 
+    </p>
 </script>

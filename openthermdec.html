@@ -9,7 +9,7 @@
         outputs:1,
         icon: "openth.png",
         label: function() {
-            return this.name||"openthermdec";
+            return this.name||"OpenThermDec";
         }
     });
 </script>
@@ -22,5 +22,9 @@
 </script>
 
 <script type="text/x-red" data-help-name="openthermdec">
-    <p>Way too bored to write anything...</p>
+    <p>A node that decodes OpenTherm messages, stored in <b>msg.msgtype</b>, <b>msg.dataid</b> and <b>msg.datavalue</b>.
+    Messages values are decoded to <b>msg.payload</b> and a topic <b>msg.topic</b> which is a hierarchic representation of the <b>dataid</b>.
+    A succesful decoded input message can result in 1 or more output messages. 
+    The original payload value of the message will be returned as <b>msg.raw</b>.
+    </p>
 </script>
