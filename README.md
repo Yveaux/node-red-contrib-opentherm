@@ -1,4 +1,4 @@
-# OpenTherm interface for Node-RED
+# OpenTherm decoder for Node-RED
 
 These nodes will decode messages from an [OpenTherm](https://www.opentherm.eu/) central heating system.
 
