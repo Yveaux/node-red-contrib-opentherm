@@ -201,6 +201,7 @@ module.exports = function(RED) {
                   msg.topic   = res[1];
                   msg.raw     = raw;
                   node.send(msg);
+                  node.done();
                 } );
               }
               else
