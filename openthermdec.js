@@ -2,7 +2,9 @@ module.exports = function(RED) {
     function OpenThermDec(config) {
         RED.nodes.createNode(this,config);
         var node = this;
-        this.on('input', function(msg) {
+        this.on('input', function(msg,send,done) {
+            // If this is pre-node-red-1.0, 'send' will be undefined, so fallback to node.send
+            send = send || function() { node.send.apply(node,arguments) }
 
             // Master-to-slave messages (conrol unit to boiler)
             const MSG_TYPE_READ_DATA = 0;
@@ -197,12 +199,13 @@ module.exports = function(RED) {
               {
                 Map[dataId].forEach( function(f) {
                   var res = f(dataValue);
-                  msg.payload = res[0];
-                  msg.topic   = res[1];
-                  msg.raw     = raw;
-                  node.send(msg);
-                  node.done();
-                } );
+                  node.send({ payload: res[0], topic: res[1], raw: raw });
+                });
+                // Check done exists (1.0+)
+                if (done)
+                {
+                  done();
+                }
               }
               else
               {

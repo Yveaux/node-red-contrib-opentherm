@@ -13,7 +13,9 @@ module.exports = function(RED) {
     function OTGWDec(config) {
         RED.nodes.createNode(this,config);
         var node = this;
-        this.on('input', function(msg) {
+        this.on('input', function(msg,send,done) {
+            // If this is pre-node-red-1.0, 'send' will be undefined, so fallback to node.send
+            send = send || function() { node.send.apply(node,arguments) }
             var raw = msg.payload.toString().toUpperCase();
 
             // Perform sanity check on message
@@ -56,8 +58,12 @@ module.exports = function(RED) {
             msg.msgtype   = (parseInt(message.slice(0,2), 16) & 0x70) >> 4;
             msg.dataid    = parseInt(message.slice(2,4), 16);
             msg.datavalue = parseInt(message.slice(4,8), 16);
-            node.send(msg);
-            node.done();
+            send(msg);
+            // Check done exists (1.0+)
+            if (done)
+            {
+              done();
+            }
         });
     }
     RED.nodes.registerType("otgwdec",OTGWDec);
