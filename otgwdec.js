@@ -57,6 +57,7 @@ module.exports = function(RED) {
             msg.dataid    = parseInt(message.slice(2,4), 16);
             msg.datavalue = parseInt(message.slice(4,8), 16);
             node.send(msg);
+            node.done();
         });
     }
     RED.nodes.registerType("otgwdec",OTGWDec);
