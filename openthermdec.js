@@ -198,7 +198,8 @@ module.exports = function(RED) {
                 100: [  function(v) { return [convBit(LB(v) & 1  ), "remote_override/manual_change_priority"           ] },
                         function(v) { return [convBit(LB(v) & 2  ), "remote_override/program_change_priority"          ] } ],
             // Unkown ids
-                 99: [  function(v) { return [convU8 (HB(v)      ), "Operating Mode HC1, HC2/ DHW"                     ] } ],
+                 // 99              "Operating Mode HC1, HC2/ DHW"  (description is not available)
+                 99: [  function(v) { return [convU8 (HB(v)      ), "operating_mode"                                   ] } ],
             };
 
             try {
